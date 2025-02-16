@@ -1,0 +1,43 @@
+﻿@model             TaskModel
+
+@{
+    ViewData["Title"] = "Görev Sil";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-danger text-white">
+            <h2 class="mb-0"><i class="bi bi-trash"></i> Görev Sil</h2>
+        </div>
+        <div class="card-body">
+            <p>Bu görevi silmek istediğinizden emin misiniz?</p>
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>Görev Adı</th>
+                    <td>@Model.TaskName</td>
+                </tr>
+                <tr>
+                    <th>Açıklama</th>
+                    <td>@Model.Description</td>
+                </tr>
+                <tr>
+                    <th>Durum</th>
+                    <td>@Model.Status</td>
+                </tr>
+            </table>
+
+            <form asp-action="Delete" method="post">
+                <input type="hidden" asp-for="Id" />
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash"></i> Sil
+                    </button>
+                    <a asp-action="Index" asp-route-projectId="@Model.ProjectId" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> İptal
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

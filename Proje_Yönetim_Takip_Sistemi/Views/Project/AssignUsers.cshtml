@@ -1,0 +1,41 @@
+﻿@model             Project
+@{
+    ViewData["Title"] = "Kullanıcıları Ata";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0"><i class="bi bi-person-plus"></i> Projeye Kullanıcı Ata</h2>
+        </div>
+        <div class="card-body">
+            <form asp-action="AssignUsers" method="post">
+                <input type="hidden" name="projectId" value="@ViewBag.ProjectId" />
+
+                <div class="form-group">
+                    <label class="form-label">Kullanıcıları Seçin</label>
+                    <div class="list-group">
+                        @foreach (User user in ViewBag.Users)
+                        {
+                            <label class="list-group-item d-flex align-items-center">
+                                <input type="checkbox" name="selectedUsers" value="@user.Id"
+                                       class="form-check-input me-2"
+                                @(ViewBag.AssignedUsers.Contains(user.Id) ? "checked" : "") />
+                                @user.UserName
+                            </label>
+                        }
+                    </div>
+                </div>
+
+                <div class="mt-4 d-flex gap-2 justify-content-between">
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-check-lg"></i> Kaydet
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Geri
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

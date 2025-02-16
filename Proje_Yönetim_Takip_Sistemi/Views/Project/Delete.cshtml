@@ -1,0 +1,52 @@
+﻿@model             Project
+
+@{
+    ViewData["Title"] = "Projeyi Sil";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-danger text-white">
+            <h2 class="mb-0"><i class="bi bi-trash-fill"></i> Projeyi Sil</h2>
+        </div>
+        <div class="card-body">
+            <h4 class="text-danger fw-bold">Bu projeyi silmek istediğinize emin misiniz?</h4>
+            <p class="text-muted">Bu işlem geri alınamaz!</p>
+
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th class="bg-light">Proje Adı</th>
+                            <td>@Model.project_name</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Açıklama</th>
+                            <td>@Model.statement</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Başlangıç Tarihi</th>
+                            <td>@Model.start_day</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Bitiş Tarihi</th>
+                            <td>@Model.end_day</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Durum</th>
+                            <td>@Model.status</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <form asp-action="Delete" method="post">
+                <input type="hidden" asp-for="Id" />
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i> Sil</button>
+                    <a asp-action="Index" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> İptal</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+﻿@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+@model             TaskModel
+
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0"><i class="bi bi-file-earmark-plus"></i> Yeni Görev Ekle</h2>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" method="post">
+                <input type="hidden" name="projectId" value="@ViewBag.ProjectId" />
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Görev Adı</label>
+                        <input type="text" name="TaskName" class="form-control" required />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Açıklama</label>
+                        <textarea name="Description" class="form-control"></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Atanacak Kullanıcılar</label>
+                        <input type="text" name="AssignedUser" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Başlangıç Tarihi</label>
+                        <input type="date" name="StartDate" class="form-control" required />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Bitiş Tarihi</label>
+                        <input type="date" name="EndDate" class="form-control" required />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Durum</label>
+                        <select asp-for="Status" class="form-select">
+                            <option value="Beklemede">Beklemede</option>
+                            <option value="Devam Ediyor">Devam Ediyor</option>
+                            <option value="Tamamlandı">Tamamlandı</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mt-4 d-flex gap-2 justify-content-between">
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-check-lg"></i> Kaydet
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Geri
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
